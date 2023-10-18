@@ -644,6 +644,7 @@ def _get_variant(info):
             "almalinux",
             "alpine",
             "arch",
+            "buildroot",
             "centos",
             "cloudlinux",
             "debian",
