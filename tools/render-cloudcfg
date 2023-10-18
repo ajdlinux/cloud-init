@@ -16,6 +16,7 @@ def main():
         "amazon",
         "arch",
         "benchmark",
+        "buildroot",
         "centos",
         "cloudlinux",
         "debian",
