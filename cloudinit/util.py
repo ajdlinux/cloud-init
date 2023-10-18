@@ -580,8 +580,9 @@ def get_linux_distro():
     flavor = ""
     os_release = {}
     os_release_rhel = False
-    if os.path.exists("/etc/os-release"):
-        os_release = load_shell_content(load_file("/etc/os-release"))
+    os_release_path = os.environ.get("CLOUD_INIT_OS_RELEASE_PATH", "/etc/os-release")
+    if os.path.exists(os_release_path):
+        os_release = load_shell_content(load_file(os_release_path))
     if not os_release:
         os_release_rhel = True
         os_release = _parse_redhat_release()
@@ -2992,7 +2993,7 @@ def system_is_snappy():
     # channel.ini is configparser loadable.
     # snappy will move to using /etc/system-image/config.d/*.ini
     # this is certainly not a perfect test, but good enough for now.
-    orpath = "/etc/os-release"
+    orpath = os.environ.get("CLOUD_INIT_OS_RELEASE_PATH", "/etc/os-release")
     try:
         orinfo = load_shell_content(load_file(orpath, quiet=True))
         if orinfo.get("ID", "").lower() == "ubuntu-core":
