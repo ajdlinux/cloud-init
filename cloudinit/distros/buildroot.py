@@ -115,17 +115,12 @@ class Distro(distros.Distro):
         """
         return True
 
-LOCALE_CONF_FN = "/etc/default/locale"
+    def apply_locale(self, locale, out_fn=None):
+        """
+        XXX: we just return here, don't do anything
+        """
+        return
 
-def read_system_locale(sys_path=LOCALE_CONF_FN, keyname="LANG"):
-    """Read system default locale setting, if present"""
-    sys_val = ""
-    if not sys_path:
-        raise ValueError("Invalid path: %s" % sys_path)
-
-    if os.path.exists(sys_path):
-        locale_content = util.load_file(sys_path)
-        sys_defaults = util.load_shell_content(locale_content)
-        sys_val = sys_defaults.get(keyname, "")
-
-    return sys_val
+def read_system_locale(sys_path=None, keyname="LANG"):
+    """XXX: be useless here"""
+    return ""
